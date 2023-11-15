@@ -24,7 +24,7 @@ public class Basket : MonoBehaviour
         transform.position = pos;
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         GameObject collidedWith = other.gameObject;
         if (collidedWith.layer == LayerMask.NameToLayer("Apples"))
