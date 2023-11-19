@@ -12,10 +12,12 @@ public class ApplePicker : MonoBehaviour
     public float basketBottomY = -14f;
     public float basketSpacingY = 2f;
     public List<GameObject> basketList;
+    GameManager gameManager;
     TextMeshProUGUI scoreGT;
 
     private void Awake()
     {
+        gameManager = FindObjectOfType<GameManager>();
         scoreGT = GameObject.Find("ScoreCounter").GetComponent<TextMeshProUGUI>();
     }
 
@@ -41,8 +43,9 @@ public class ApplePicker : MonoBehaviour
         Destroy(tBasketGO);
         scoreGT.text = "Score: 0";
 
-        if (basketList.Count == 0) {
-            SceneManager.LoadScene(0);
+        if (basketList.Count == 0)
+        {
+            gameManager.LoadGameOver();
         }
     }
 }

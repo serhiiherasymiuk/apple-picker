@@ -7,10 +7,12 @@ public class Basket : MonoBehaviour
 {
     [Header("Set Dynamically")]
     TextMeshProUGUI scoreGT;
+    ScoreKeeper scoreKeeper;
     int score = 0;
 
     private void Awake()
     {
+        scoreKeeper = FindObjectOfType<ScoreKeeper>();
         scoreGT = GameObject.Find("ScoreCounter").GetComponent<TextMeshProUGUI>();
     }
 
@@ -31,6 +33,8 @@ public class Basket : MonoBehaviour
         {
             Destroy(collidedWith);
             score += 100;
+            scoreKeeper.ModifyScore(100);
+
             scoreGT.text = "Score: " + score.ToString();
             if (score > HighScore.score)
             {
